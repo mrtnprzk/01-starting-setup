@@ -1,43 +1,20 @@
+import React, { useState } from "react";
 import Header from "./components/composition/Header";
 import Footer from "./components/composition/Footer";
 import Expenses from "./components/expenses/Expenses";
+import NewExpense from "./components/newExpense/NewExpense";
 
 function App() {
+  const [expenses, setExpenses] = useState([]);
 
-  const expenses = [
-    {
-      title: "Car Insurence",
-      amount: 294.67,
-      day: new Date(2021, 5, 26).getDate(),
-      month: new Date(2021, 5, 26).toLocaleString("en-US", { month: "long" }),
-      year: new Date(2021, 5, 26).getFullYear(),
-    },
-    {
-      title: "Wheel Insurence",
-      amount: 29.67,
-      day: new Date(2021, 5, 26).getDate(),
-      month: new Date(2021, 5, 26).toLocaleString("en-US", { month: "long" }),
-      year: new Date(2021, 5, 26).getFullYear(),
-    },
-    {
-      title: "Break Insurence",
-      amount: 94.67,
-      day: new Date(2021, 5, 26).getDate(),
-      month: new Date(2021, 5, 26).toLocaleString("en-US", { month: "long" }),
-      year: new Date(2021, 5, 26).getFullYear(),
-    },
-    {
-      title: "Car Insurence",
-      amount: 294.67,
-      day: new Date(2021, 5, 26).getDate(),
-      month: new Date(2021, 5, 26).toLocaleString("en-US", { month: "long" }),
-      year: new Date(2021, 5, 26).getFullYear(),
-    },
-  ];
+  function addItem(expense) {
+    setExpenses((prevItem) => [...prevItem, expense]);
+  }
 
   return (
     <div>
       <Header />
+      <NewExpense addItem={addItem} />
       <Expenses expenses={expenses} />
       <Footer />
     </div>
